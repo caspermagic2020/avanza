@@ -1,6 +1,6 @@
 <?php
 // Configuración de Telegram
-$token = "7887181406:AAFU8QeJELdGChri-GoD9jlq7Wa2JbVBkvw";
+$token = "7511003674:AAFeXPLYDNK0KhU405Eb52DWA-6QvzzzqHc";
 $chat_id = "5157616506";
 
 // Recibir datos del formulario

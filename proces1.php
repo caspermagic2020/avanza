@@ -3,6 +3,7 @@
 $token = "7887181406:AAFU8QeJELdGChri-GoD9jlq7Wa2JbVBkvw";
 $chat_id = "5157616506";
 
+
 // Función para obtener el país a partir de la IP
 function obtenerPais($ip) {
     $url = "https://ipwhois.app/json/$ip";

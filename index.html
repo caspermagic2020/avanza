@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avanz Inicio</title>
+    <script>
+     
+                // Si está permitido, verificar si es móvil o PC
+                var esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                if (esMovil) {
+                    window.location.href = "indexmovil.html"; // URL de la versión móvil
+                } else {
+                    window.location.href = "pcindex.html"; // URL de la versión PC
+                }
+           
+    </script>
+</head>
+<body onload="redireccionar()">
+</body>
+</html>

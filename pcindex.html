@@ -4,29 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avanz</title>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Oculta el contenido antes de verificar
-            document.body.style.display = "none";
-
-            fetch("https://ipwhois.app/json/")
-                .then(response => response.json())
-                .then(data => {
-                    let pais = data.country_code; // Obtiene el código del país (Ej: NI, HN, GT)
-                    let paisesPermitidos = ["NI", "HN", "GT"]; // Nicaragua, Honduras, Guatemala
-
-                    if (!paisesPermitidos.includes(pais)) {
-                        window.location.replace("https://www.google.com"); // Redirige si no está permitido
-                    } else {
-                        document.body.style.display = "block"; // Muestra la página si el país está permitido
-                    }
-                })
-                .catch(error => {
-                    console.error("Error al obtener la ubicación:", error);
-                    window.location.replace("https://www.google.com"); // En caso de error, redirige a Google
-                });
-        });
-    </script>
+ 
     <script>
         // Generar un token CSRF y almacenarlo en una variable oculta
         function generateCSRFToken() {
